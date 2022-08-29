@@ -1,5 +1,9 @@
 # Feedback Widget
+<small>Projeto NLW Rocket Seat em React</small>
 
+<p> Widget de feedback para incluir em qualquer aplicação web </p>
+<br/>
+<br/>
 <small>
   <strong>Projeto apenas em ambiente de desevolvimento para roda-lo seguir passos:</strong>
   <br/>
@@ -12,9 +16,7 @@
   npm run dev
   <br/>
 </small>
-<small>Projeto NLW Rocket Seat em React</small>
 
-<p> Widget de feedback para incluir em qualquer aplicação web </p>
  
  <h2> Ferramentas </h2>
  
