@@ -2,38 +2,36 @@
 
 import express from "express";
 import nodemailer from 'nodemailer';
+import { NodemailerMailAdpter } from "./adapters/nodemailer/nodemailer-mail-adapter";
 import {prisma} from './prisma';
+import { PrismaFeedbacksRepository } from "./repositories/Prisma/prisma-feedbacks-repository";
+import { SubmitFeedbackService } from "./services/submit-feedbacks-service";
 
 export const routes = express.Router(); // Necessario chmamar o express.Router quando é utilizado arquivo de rotas separado do server 
 
 routes.use(express.json());
 
-const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
-    port: 2525,
-    auth: {
-      user: "ef25c66a0c04d3",
-      pass: "0ef8607c67698b"
-    }
-  });
+
 
 routes.post('/feedbacks', async (req, res) =>{
 
-    const { type, comment, screenshot } = req.body
+    const { type, comment, screenshot } = req.body;
 
-    const feedback = 
+    const prismaFeedbacksRepository = new PrismaFeedbacksRepository();
 
-    await transport.sendMail({
-        from : 'Equipe Feedget <oi@feedget.com>',
-        to : 'Lucas Leite <llneves019@gmail.com>',
-        subject : 'Novo Feedback',
+    const nodemailerMailAdapter = new NodemailerMailAdpter();
 
-        html : [
-            `<div style="font-family: sans-serif; font-size: 16px; color: black">`,
-            `<p> Tipo do feedback: ${type}</p>`,
-            `<p>Comentario : ${comment} </p>`,
-            '</div>'
-        ].join('\n')
+    const submitFeedbackService = new SubmitFeedbackService(
+      prismaFeedbacksRepository, nodemailerMailAdapter
+    )
+
+    
+    await submitFeedbackService.execute({
+      type,
+      comment,
+      screenshot
     })
-    return res.status(201).json(feedback) // Status de criação | Quando quero sinalizar que alguma coisa foi criada
+
+    
+    return res.status(201).send('Enviado com sucesso') // Status de criação | Quando quero sinalizar que alguma coisa foi criada
 })
