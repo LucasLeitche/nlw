@@ -2,6 +2,7 @@
 
 <small>
   <strong>Projeto apenas em ambiente de desevolvimento para roda-lo seguir passos:</strong>
+  <br/>
   Clonar projeto, ou compacta-lo.
   <strong>Dentro do projeto</strong>
   npm install
