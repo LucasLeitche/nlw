@@ -1,2 +1,2 @@
 # nlw
-Projeto NLW Rocket Seat em React e React Native
+Projeto NLW Rocket Seat em React 
