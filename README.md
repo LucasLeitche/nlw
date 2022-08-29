@@ -4,9 +4,13 @@
   <strong>Projeto apenas em ambiente de desevolvimento para roda-lo seguir passos:</strong>
   <br/>
   Clonar projeto, ou compacta-lo.
+  <br/>
   <strong>Dentro do projeto</strong>
+  <br/>
   npm install
+  <br/>
   npm run dev
+  <br/>
 </small>
 <small>Projeto NLW Rocket Seat em React</small>
 
